@@ -14,5 +14,5 @@ class GlobalSettings(object):
     site_footer = "ExaminationSystem By 【S·A·Y】 - 2020"
 
 
-xadmin.site.register(views.BaseAdminView,BaseSetting)
-xadmin.site.register(views.CommAdminView,GlobalSettings)
+xadmin.site.register(views.BaseAdminView, BaseSetting)
+xadmin.site.register(views.CommAdminView, GlobalSettings)

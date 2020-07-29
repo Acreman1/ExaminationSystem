@@ -37,17 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
-    'organization',
+    'users.apps.UsersConfig',
+    'organization.apps.OrganizationConfig',
     'xadmin',
     'crispy_forms',
-    'reversion'
+    'reversion',
+    'corsheaders',
+    'rest_framework'
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 中间键
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,6 +96,11 @@ DATABASES = {
     }
 }
 
+# 跨域白名单
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:5500']
+
+# 跨域凭证
+CORS_ALLOW_CREDENTIALS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
