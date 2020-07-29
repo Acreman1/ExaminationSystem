@@ -12,6 +12,7 @@ class GlobalSettings(object):
     # 设置网站标题和页脚
     site_title = "智慧考试系统后台管理页面"
     site_footer = "ExaminationSystem By 【S·A·Y】 - 2020"
+    menu_style = 'accordion'
 
 
 xadmin.site.register(views.BaseAdminView,BaseSetting)
