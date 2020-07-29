@@ -10,7 +10,7 @@ class UserProfile(AbstractUser):
     is_org = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.username
 
 
 class VerifyCode(models.Model):
