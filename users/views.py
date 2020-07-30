@@ -4,6 +4,7 @@ from django.contrib.auth.hashers import make_password,check_password
 from django.db.models import Q
 
 from rest_framework import viewsets,authentication,generics
+from rest_framework.views import APIView
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.permissions import IsAdminUser
 

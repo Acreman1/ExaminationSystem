@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'reversion',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_filters'
+    'django_filters',
+    'social_django'
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -54,6 +55,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
+    'social_core.backends.weibo.WeiboOAuth2',
+    'social_core.backends.weixin.WeixinOAuth2',
+    'social_core.backends.qq.QQOAuth2',
+    'django.contrib.auth.backends.ModelBackend'
 )
 
 APPEND_SLASH = False
@@ -100,6 +105,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -165,3 +172,10 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+SOCIAL_AUTH_WEIBO_KEY = '3978227208'
+SOCIAL_AUTH_WEIBO_SECRET = '1a27b77144ba9ad64e2e13449975103e'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://127.0.0.1:5500/templates/web/index.html'
