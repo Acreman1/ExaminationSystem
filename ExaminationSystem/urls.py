@@ -18,4 +18,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-path/', include('rest_framework.urls'), name='restFramework'),
     path('login/', obtain_jwt_token),
+    path('',include('social_django.urls',namespace='social'))
+
 ]
