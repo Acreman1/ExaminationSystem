@@ -16,6 +16,6 @@ router.register('score', ScoreView)
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('', include(router.urls)),
-    path('api-path/',include('rest_framework.urls'),name='restFramework'),
+    path('api-path/', include('rest_framework.urls'), name='restFramework'),
     path('login/', obtain_jwt_token),
 ]

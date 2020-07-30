@@ -29,6 +29,9 @@ class UserViewSet(viewsets.ViewSetMixin,generics.CreateAPIView):
     serializer_class = UserSerializers
     authentication_classes = [JSONWebTokenAuthentication,authentication.SessionAuthentication]
 
+    def get_object(self):
+        return self.request.user
+
 
 def jwt_response_payload_handler(token, user=None, request=None):
     """
