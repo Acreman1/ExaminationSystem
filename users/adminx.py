@@ -1,6 +1,6 @@
 import xadmin
 from xadmin import views
-
+from .models import EmailVerifyRecord
 
 class BaseSetting(object):
     # xadmin的基础配置
@@ -14,5 +14,12 @@ class GlobalSettings(object):
     site_footer = "ExaminationSystem By 【S·A·Y】 - 2020"
 
 
+class EmailVerifyRecordAdmin(object):
+    list_display = ['code','email','send_type','send_time']
+    search_fields = ['code', 'email', 'send_type']
+    list_filter = ['code', 'email', 'send_type', 'send_time']
+
+
 xadmin.site.register(views.BaseAdminView,BaseSetting)
 xadmin.site.register(views.CommAdminView,GlobalSettings)
+xadmin.site.register(EmailVerifyRecord,EmailVerifyRecordAdmin)

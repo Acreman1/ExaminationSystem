@@ -10,7 +10,7 @@ class UserProfile(AbstractUser):
     is_org = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.username
 
 
 class VerifyCode(models.Model):
@@ -24,3 +24,18 @@ class VerifyCode(models.Model):
 
     def __str__(self):
         return self.code
+    
+
+class EmailVerifyRecord(models.Model):
+    send_choices = (
+        ('register','注册'),
+        ('forget','找回密码')
+    )
+    code = models.CharField('验证码',max_length=20)
+    email = models.EmailField('邮箱',max_length=50)
+    send_type = models.CharField(choices=send_choices,max_length=10)
+    send_time = models.DateTimeField(default=datetime.now)
+
+    class Meta:
+        verbose_name = '邮箱验证码'
+        verbose_name_plural = verbose_name
