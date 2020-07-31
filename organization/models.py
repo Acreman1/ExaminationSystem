@@ -27,10 +27,10 @@ class Message(models.Model):
 
 # 总成绩
 class Score(models.Model):
-    grade = models.IntegerField("总分",default=0)
-    add_time = models.DateTimeField("时间",default=datetime.now)
-    an_user = models.ForeignKey(User, on_delete=models.CASCADE,null=False)
-    message = models.ForeignKey('Message', on_delete=models.CASCADE,null=False)
+    grade = models.IntegerField("总分", default=0)
+    add_time = models.DateTimeField("时间", default=datetime.now)
+    an_user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    message = models.ForeignKey('Message', on_delete=models.CASCADE, null=False)
 
 
 # 单个试题
