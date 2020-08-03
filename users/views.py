@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from rest_framework import generics,views,viewsets,authentication
 from rest_framework.response import Response
-from .serializers import UserRegSerializer
+from .serializers import UserSerializers
 from utils.peimissions import IsOwnerReadOnly
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password,check_password
@@ -85,7 +85,7 @@ class CodeViewset(views.APIView):
 #手机注册
 class PhoneViewset(CreateModelMixin,viewsets.GenericViewSet):
     queryset = User.objects.all()
-    serializer_class = UserRegSerializer
+    serializer_class = UserSerializers
 
     def perform_create(self, serializer):
         return serializer.save(password=make_password(self.request.data['password']),mobile=self.request.data['username'])
@@ -93,7 +93,7 @@ class PhoneViewset(CreateModelMixin,viewsets.GenericViewSet):
 
 #邮箱注册
 class UserViewset(generics.CreateAPIView,viewsets.GenericViewSet):
-    serializer_class = UserRegSerializer
+    serializer_class = UserSerializers
     queryset = User.objects.all()
 
     def perform_create(self, serializer):

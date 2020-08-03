@@ -33,12 +33,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
-    'social_django'
+    'social_django',
     'corsheaders',
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
+#跨域
 CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:8000','http://127.0.0.1:5500']
 CORS_ALLOW_CREDENTIALS = True
 
@@ -68,7 +69,6 @@ JWT_AUTH = {
 }
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     # 中间键
     'corsheaders.middleware.CorsMiddleware',
@@ -80,10 +80,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-#跨域
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = True
 
 
 ROOT_URLCONF = 'ExaminationSystem.urls'
