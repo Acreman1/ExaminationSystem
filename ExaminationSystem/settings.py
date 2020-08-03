@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'django_filters',
     'social_django'
     'corsheaders',
-    'captcha',
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
@@ -124,11 +123,7 @@ DATABASES = {
     }
 }
 
-# 跨域白名单
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:5500']
 
-# 跨域凭证
-CORS_ALLOW_CREDENTIALS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -168,7 +163,6 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
@@ -177,8 +171,8 @@ SOCIAL_AUTH_WEIBO_KEY = '3978227208'
 SOCIAL_AUTH_WEIBO_SECRET = '1a27b77144ba9ad64e2e13449975103e'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://127.0.0.1:5500/templates/web/index.html'
 
-# 手机号码正则表达式
-REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+
+
 # 云片网 api_key
 APIKEY = '9125dde81bd0553fde56fb1db6177193'
 
