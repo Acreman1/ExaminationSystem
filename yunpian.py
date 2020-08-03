@@ -19,7 +19,6 @@ class YunPian(object):
         re_dict = json.loads(response.text)
         return re_dict
 
-
 if __name__ == "__main__":
     yuan_pian = YunPian('9125dde81bd0553fde56fb1db6177193')
     yuan_pian.send_sms("2020", "15534352096")
