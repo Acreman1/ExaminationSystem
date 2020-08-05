@@ -20,7 +20,7 @@ class MessageSer(serializers.ModelSerializer):
 
 
 class ClassifySer(serializers.ModelSerializer):
-    # source = 'class_key.title'
+    # source = 'class_key.title' 
     class_key = MessageSer(many=True)
 
     class Meta:
