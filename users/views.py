@@ -16,6 +16,7 @@ from rest_framework.mixins import CreateModelMixin
 import re,random
 from yunpian import YunPian
 from ExaminationSystem.settings import APIKEY
+# from rest_framework_jwt.authentication import jwt_decode_handler
 # Create your views here.
 User = get_user_model()
 
@@ -29,13 +30,25 @@ class CustomBackend(ModelBackend):
         except Exception as e:
             return None
 
-# class UserViewSet(viewsets.ViewSetMixin,generics.CreateAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializers
-#     authentication_classes = [JSONWebTokenAuthentication,authentication.SessionAuthentication]
+class UserView(viewsets.ViewSetMixin,generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializers
+    authentication_classes = [JSONWebTokenAuthentication,authentication.SessionAuthentication]
 
-#     def get_object(self):
-#         return self.request.user
+    def perform_create(self, serializer):
+        return serializer.save(password=make_password(self.request.data['password']), name=self.request.data['name'], mobile=self.request.data['mobile'],is_org=1)
+
+    # def perform_create(self, serializer):
+    #     token = self.request.POST.get('jwt')
+    #     token_user = jwt_decode_handler(token)
+    #     print(token_user)
+    #     return serializer.save(is_org=1)
+
+
+    def get_object(self):
+        return self.request.user
+    
+
 
 def jwt_response_payload_handler(token, user=None, request=None):
     """
