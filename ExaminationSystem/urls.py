@@ -7,9 +7,9 @@ from users.views import *
 from organization.views import *
 
 router = routers.DefaultRouter()
-router.register(r'users',UserViewset,basename='users')
+router.register('users',UserViewset,basename='users')
 router.register('phone',PhoneViewset,basename="phone")
-router.register(r'org',UserView)
+router.register('org',UserPutView)
 router.register('message', MessageView)
 router.register('class', ClassifyView)
 router.register('topic', TopicView)
@@ -20,7 +20,7 @@ urlpatterns = [
     path('xadmin/', xadmin.site.urls),
     path('api-auth/',include('rest_framework.urls')),
     path(r'',include(router.urls)),
-     path('login/', obtain_jwt_token),
+    path('login/', obtain_jwt_token),
     path('',include('social_django.urls',namespace='social')),
     path('code/',CodeViewset.as_view(),name='code'),
     path('send/',SendMailViewset.as_view(),name='send'),

@@ -1,7 +1,8 @@
 from django.shortcuts import redirect
-from rest_framework import generics,views,viewsets,authentication
+from rest_framework import generics,views,viewsets,authentication,mixins
 from rest_framework.response import Response
 from .serializers import UserSerializers
+from rest_framework_jwt.authentication import jwt_decode_handler
 from utils.peimissions import IsOwnerReadOnly
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password,check_password
@@ -30,24 +31,13 @@ class CustomBackend(ModelBackend):
         except Exception as e:
             return None
 
-class UserView(viewsets.ViewSetMixin,generics.CreateAPIView):
+
+class UserPutView(viewsets.ReadOnlyModelViewSet,generics.UpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializers
-    authentication_classes = [JSONWebTokenAuthentication,authentication.SessionAuthentication]
 
-    def perform_create(self, serializer):
-        return serializer.save(password=make_password(self.request.data['password']), name=self.request.data['name'], mobile=self.request.data['mobile'],is_org=1)
-
-    # def perform_create(self, serializer):
-    #     token = self.request.POST.get('jwt')
-    #     token_user = jwt_decode_handler(token)
-    #     print(token_user)
-    #     return serializer.save(is_org=1)
-
-
-    def get_object(self):
-        return self.request.user
-    
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
 
 
 def jwt_response_payload_handler(token, user=None, request=None):
