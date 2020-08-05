@@ -3,7 +3,6 @@ from rest_framework import routers
 from django.urls import path,include
 import xadmin
 from rest_framework import routers
-from django.views.decorators.csrf import csrf_exempt
 from users.views import *
 from organization.views import *
 
@@ -23,12 +22,12 @@ urlpatterns = [
     path(r'',include(router.urls)),
      path('login/', obtain_jwt_token),
     path('',include('social_django.urls',namespace='social')),
-    path('code/',csrf_exempt(CodeViewset.as_view()),name='code'),
-    path('send/',csrf_exempt(SendMailViewset.as_view()),name='send'),
-    path('forget/',csrf_exempt(ForgetViewset.as_view()),name='forget'),
-    path('modify/',csrf_exempt(ModifyPwdView.as_view()),name='modify'),
-    path('active/<code>/',csrf_exempt(ActiveViewset.as_view()),name='active'),
-    path('reset/<code>/',csrf_exempt(ResetViewset.as_view()),name='reset'),
+    path('code/',CodeViewset.as_view(),name='code'),
+    path('send/',SendMailViewset.as_view(),name='send'),
+    path('forget/',ForgetViewset.as_view(),name='forget'),
+    path('modify/',ModifyPwdView.as_view(),name='modify'),
+    path('active/<code>/',ActiveViewset.as_view(),name='active'),
+    path('reset/<code>/',ResetViewset.as_view(),name='reset'),
 
 
 ]
