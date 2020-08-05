@@ -181,3 +181,6 @@ EMAIL_HOST_USER = "1419517126@qq.com"
 EMAIL_HOST_PASSWORD = "hcuuamtyygumjaee"
 EMAIL_USE_TLS = True
 EMAIL_FROM = "1419517126@qq.com"
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
