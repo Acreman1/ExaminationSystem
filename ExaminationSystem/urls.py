@@ -12,7 +12,7 @@ from organization.views import *
 router = routers.DefaultRouter()
 router.register(r'users',UserViewset,basename='users')
 router.register('phone',PhoneViewset,basename="phone")
-# router.register(r'users',UserViewSet)
+router.register(r'org',UserView)
 router.register('message', MessageView)
 router.register('class', ClassifyView)
 router.register('topic', TopicView)
