@@ -1,8 +1,11 @@
+from django.views.static import serve
 from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework import routers
-from django.urls import path,include
+from django.urls import path, include, re_path
 import xadmin
 from rest_framework import routers
+
+from ExaminationSystem import settings
 from users.views import *
 from organization.views import *
 
@@ -28,6 +31,7 @@ urlpatterns = [
     path('modify/',ModifyPwdView.as_view(),name='modify'),
     path('active/<code>/',ActiveViewset.as_view(),name='active'),
     path('reset/<code>/',ResetViewset.as_view(),name='reset'),
+    re_path(r'media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
 
 
 ]
