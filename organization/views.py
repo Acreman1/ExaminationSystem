@@ -31,3 +31,4 @@ class ScoreView(viewsets.GenericViewSet, viewsets.mixins.ListModelMixin, viewset
         print(token_user)
         serializer.save(an_user_id=token_user['user_id'])
 
+

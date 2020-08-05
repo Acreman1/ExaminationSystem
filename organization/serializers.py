@@ -10,7 +10,7 @@ class TopicSer(serializers.ModelSerializer):
 
 class MessageSer(serializers.ModelSerializer):
     up_user = serializers.ReadOnlyField(source='up_user.name')
-    classify = serializers.ReadOnlyField(source='classify.name')
+    # classify = serializers.ReadOnlyField(source='classify.name')
     message_key = TopicSer(many=True)
 
     class Meta:
