@@ -9,6 +9,7 @@ from django.core.files.base import ContentFile
 from .serializers import *
 from rest_framework import viewsets, generics
 import csv
+from ExaminationSystem.settings import MEDIA_ROOT
 
 
 class MessageView(viewsets.ReadOnlyModelViewSet):
@@ -27,10 +28,10 @@ class TopicView(viewsets.ReadOnlyModelViewSet, viewsets.mixins.CreateModelMixin)
 
     def perform_create(self, serializer):
         file = self.request.FILES.get('file')
-        path = default_storage.save('media/'+file.name, ContentFile(file.read()))
-        tmp_file = os.path.join('D:/桌面/1903/实训三/设计/Examination/Systemmedia', path)
+        path = default_storage.save('files/'+file.name, ContentFile(file.read()))
+        tmp_file = os.path.join(MEDIA_ROOT, path)
 
-        wb = xlrd.open_workbook(path)
+        wb = xlrd.open_workbook(tmp_file)
         wb.sheet_names()
         sh = wb.sheet_by_index(0)
         sh = wb.sheet_by_name(u'Sheet1')
@@ -43,7 +44,7 @@ class TopicView(viewsets.ReadOnlyModelViewSet, viewsets.mixins.CreateModelMixin)
                 options = sh.row_values(rownum)[-4]
             Topic.objects.create(types=types, grade=grade, answer=answer, options=options,message_id=int(serializer.data['message']))
             # serializer.save(types=types, grade=grade, answer=answer, options=options)
-        os.remove(path)
+        os.remove(tmp_file)
 
 
 class ScoreView(viewsets.GenericViewSet, viewsets.mixins.ListModelMixin, viewsets.mixins.CreateModelMixin):
