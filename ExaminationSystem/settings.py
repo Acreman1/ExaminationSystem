@@ -113,8 +113,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ExaminationSystem',
         'USER': 'root',
-        'PASSWORD': 'byf12138',
-        'HOST': '47.107.118.146',
+        'PASSWORD': '',
+        'HOST': '',
         'PORT': '3306'
     }
 }
@@ -163,22 +163,22 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-SOCIAL_AUTH_WEIBO_KEY = '3978227208'
-SOCIAL_AUTH_WEIBO_SECRET = '1a27b77144ba9ad64e2e13449975103e'
+SOCIAL_AUTH_WEIBO_KEY = ''
+SOCIAL_AUTH_WEIBO_SECRET = ''
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'http://127.0.0.1:5500/templates/web/index.html'
 
 
 
 # 云片网 api_key
-APIKEY = '9125dde81bd0553fde56fb1db6177193'
+APIKEY = ''
 
 
 #邮箱
 EMAIL_HOST = "smtp.qq.com"
 EMAIL_PORT = "25"
-EMAIL_HOST_USER = "1419517126@qq.com"
+EMAIL_HOST_USER = "@qq.com"
 #生成的授权码
-EMAIL_HOST_PASSWORD = "hcuuamtyygumjaee"
+EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = True
 EMAIL_FROM = "1419517126@qq.com"
 
